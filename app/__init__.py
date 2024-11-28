@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_restx import Api
@@ -9,6 +9,17 @@ from app.config import environment
 
 
 app = Flask(__name__)
+@app.route('/roles',methods=['GET','POST','DELETE','PATCH'])
+def roles():
+    if request.method =='POST':
+          return ""
+    else:
+        return render_template ('pricing.html')
+if __name__ == '__main__':
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
+    app.run(debug=True, host="0.0.0.0",port=os.getenv("PORT",defaul=5000))
+
 app.config.from_object(environment)
 
 authorization = {
