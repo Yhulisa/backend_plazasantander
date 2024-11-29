@@ -20,7 +20,7 @@ request_schema = UserRequestSchema(user_ns)
 @user_ns.doc(security='Bearer')
 
 class UsersListCreate(Resource):
-    @jwt_required()
+    #@jwt_required()
     @user_ns.expect(request_schema.all())
     def get(self):
         ''' Listar todos los usuarios '''
@@ -28,7 +28,7 @@ class UsersListCreate(Resource):
         controller = UserController()
         return controller.fetch_all(query_params)
 
-    @jwt_required()
+    #@jwt_required()
     @user_ns.expect(request_schema.create(), validate=True)
     def post(self):
         ''' Creacion de un usuario '''
