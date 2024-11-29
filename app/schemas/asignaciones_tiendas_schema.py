@@ -2,9 +2,9 @@ from flask_restx import fields
 from flask_restx.reqparse import RequestParser
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from marshmallow.fields import Nested
-from app.models.users_model import UserModel
+from app.models.asignaciones_tiendas_model import AsignacionTiendaModel
 
-class UserRequestSchema:
+class AsignacionTiendaRequestSchema:
     def __init__(self, namespace):
         self.namespace = namespace
 
@@ -15,7 +15,7 @@ class UserRequestSchema:
         return parser
 
     def create(self):
-        return self.namespace.model('User Create', {
+        return self.namespace.model('AsignacionTienda Create', {
             'name': fields.String(required=True, min_length=3, max_length=120),
             'last_name': fields.String(required=True, min_length=3, max_length=150),
             'username': fields.String(required=True, min_length=3, max_length=80),
@@ -25,7 +25,7 @@ class UserRequestSchema:
         })
 
     def update(self):
-        return self.namespace.model('User Update', {
+        return self.namespace.model('AsignacionTienda Update', {
             'name': fields.String(required=False, min_length=3, max_length=120),
             'last_name': fields.String(required=False, min_length=3, max_length=150),
             'username': fields.String(required=False, min_length=3, max_length=80),
@@ -36,7 +36,7 @@ class UserRequestSchema:
 
 class UserResponseSchema(SQLAlchemyAutoSchema):
     class Meta:
-        model = UserModel
+        model = AsignacionTiendaModel
         exclude = ['password']
         include_fk = True
 

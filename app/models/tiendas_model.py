@@ -1,20 +1,20 @@
 from app.models import BaseModel
-from sqlalchemy import Column, Integer,Numeric, String, Boolean,Text,ForeignKey
+from sqlalchemy import Column, Integer,Numeric, String, Boolean,ForeignKey
 from sqlalchemy.orm import relationship
 
 class TiendaModel(BaseModel):
     __tablename__ = 'tiendas'
     id = Column(Integer, primary_key=True)
-    centro_comercial_id = Column(Integer, ForeignKey('centros_comerciales.id', ondelete='CASCADE'))
+    centro_comercial_id = Column(Integer, ForeignKey('centros_comerciales.id'))
     numero_tienda = Column(String(20), nullable=False)
     nombre = Column(String(100), nullable=False)
     logo = Column(String(255))
     telefono = Column(String(20))
     dias_abiertos = Column(String(50))
-    horario = Column(Text)
+    horario = Column(String(255))
     numero_piso = Column(Integer, nullable=False)
     titulo = Column(String(100))
-    descripcion = Column(Text)
+    descripcion = Column(String(255))
     imagen_portada = Column(String(255))
     imagen1 = Column(String(255))
     imagen2 = Column(String(255))
@@ -27,10 +27,7 @@ class TiendaModel(BaseModel):
     contrato_vigente = Column(Boolean, default=False)
     disponibilidad_contacto = Column(String(100))
 
-    productos = relationship('ProductoModel', backref='tienda', cascade="all, delete")
-    promociones = relationship('PromocionModel', backref='tienda', cascade="all, delete")
-
-
+    centro_comercial= relationship('CentroComercialModel', uselist=False)
 
 '''
 class Usuario(db.Model):
