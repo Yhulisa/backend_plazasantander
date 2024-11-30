@@ -7,11 +7,6 @@ from app.routers import centros_comerciales_router
 from app.models import BaseModel
 
 
-# Opcional: Configurar CORS solo para ciertos dominios
-# CORS(app, origins=["http://localhost:3000", "https://mi-frontend.com"])
-
-
-
 
 BaseModel.set_session(db.session)
 

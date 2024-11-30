@@ -4,8 +4,16 @@ from flask_restx import Resource
 from flask_jwt_extended import jwt_required
 from app.controllers.centros_comerciales_controller import CentroComercialController
 from app.schemas.centros_comerciales_schema import CentroComercialRequestSchema
+from flask import Flask
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
 
+@app.route("/")
+def helloWorld():
+  return "Hello, cross-origin-world!"
+  
 centros_comerciales_ns = api.namespace(
     name='Centros_Comerciales',
     description='Endpoints del modulo Users',
