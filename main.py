@@ -7,5 +7,6 @@ from app.routers import centros_comerciales_router
 from app.models import BaseModel
 
 
+
 BaseModel.set_session(db.session)
 

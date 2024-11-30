@@ -4,11 +4,16 @@ from flask_migrate import Migrate
 from flask_restx import Api
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail
-
+from flask import Flask
+from flask_cors import CORS
 from app.config import environment
 
 
 app = Flask(__name__)
+CORS(app)
+@app.route("/")
+def helloWorld():
+  return "Hello, cross-origin-world!"
 app.config.from_object(environment)
 
 authorization = {
