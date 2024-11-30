@@ -4,10 +4,13 @@ from flask_migrate import Migrate
 from flask_restx import Api
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail
+from flask_cors import CORS
 from app.config import environment
 
 
-
+app = Flask(__name__)
+app.config.from_object(environment)
+CORS(app,sources={r"/*":{"origins":"*"}})
 authorization = {
     'Bearer': {
         'type': 'apiKey',
