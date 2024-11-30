@@ -10,7 +10,7 @@ from app.config import environment
 
 app = Flask(__name__)
 app.config.from_object(environment)
-CORS(app)
+CORS(app, supports_credentials=True)
 authorization = {
     'Bearer': {
         'type': 'apiKey',
